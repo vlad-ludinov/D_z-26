@@ -21,6 +21,13 @@ def read_directory():
     print()
     phone_directory.close()
 
+def append_new_in_directory():
+    phone_directory = open("phone_directory.txt", "a")
+    name = input("Введите имя: ")
+    phone_number = input("Введите номер телефона: ")
+    comment = input("Введите коментарий: ")
+    phone_directory.writelines(f"\n{name} - {phone_number} - {comment}")
+    phone_directory.close()
 
 menu_user_input = None
 
@@ -29,6 +36,9 @@ while menu_user_input != 9:
     menu_user_input = int(input())
     if menu_user_input == 1:
         read_directory()
+    elif menu_user_input == 2:
+        append_new_in_directory()
+    
 
 
 
