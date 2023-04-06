@@ -35,9 +35,21 @@ def find_element_directory(data, element):
 
 def change_directory():
     phone_directory1 = open("phone_directory.txt", "r")
-    print("Введите то что хотите изменить:")
+    print("Введите то что хотите изменить: 1 - Имя; 2 - Номер телефона; 3 - Коментарий")
+    replaced_element_number = input()
+    if replaced_element_number == 1:
+        print("Введите имя которое вы хотите заменить:")
+    elif replaced_element_number == 2:
+        print("Введите номер который вы хотите заменить:")
+    elif replaced_element_number == 3:
+        print("Введите коментарий который вы хотите заменить:")
     replaced_element = input()
-    print("Введите то на что вы хотите заменить:")
+    if replaced_element_number == 1:
+        print("Введите имя на которое вы хотите заменить выбраное:")
+    elif replaced_element_number == 2:
+        print("Введите номер на который вы хотите заменить выбраный:")
+    elif replaced_element_number == 3:
+        print("Введите коментарий на который вы хотите заменить выбраный:")
     replacing_element = input()
     directory = phone_directory1.readlines()
     replaced_line = find_element_directory(directory, replaced_element)
