@@ -6,19 +6,16 @@ def read_directory():
     if read_input == 1:
         for line in directory:
             print(line, end = "")
+        print()
     elif read_input == 2:
         print("Введите имя, номер телефона или коментарий интересующий вас:")
         clarification = input()
-        flag = False
-        for line in directory:
-            words = line.split(" - ")
-            for parameter in words:
-                if clarification == parameter:
-                    print(line, end = "")
-                    flag = True
-        if not flag:
+        find_line = find_element_directory(directory, clarification)
+        if find_line == None:
             print("Такого в справочнике нет")
-    print()
+            print()
+        else:
+            print(find_line)
     phone_directory.close()
 
 def append_new_in_directory():
@@ -28,6 +25,13 @@ def append_new_in_directory():
     comment = input("Введите коментарий: ")
     phone_directory.writelines(f"\n{name} - {phone_number} - {comment}")
     phone_directory.close()
+
+def find_element_directory(data, element):
+    for line in data:
+        words = line.split(" - ")
+        for parameter in words:
+            if element == parameter:
+                return line
 
 menu_user_input = None
 
