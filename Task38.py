@@ -33,6 +33,27 @@ def find_element_directory(data, element):
             if element == parameter:
                 return line
 
+def change_directory():
+    phone_directory1 = open("phone_directory.txt", "r")
+    print("Введите то что хотите изменить:")
+    replaced_element = input()
+    print("Введите то на что вы хотите заменить:")
+    replacing_element = input()
+    directory = phone_directory1.readlines()
+    replaced_line = find_element_directory(directory, replaced_element)
+    split_replaced_line = replaced_line.split(" - ")
+    split_replaced_line.insert(split_replaced_line.index(replaced_element), replacing_element)
+    split_replaced_line.pop(split_replaced_line.index(replaced_element))
+    replacing_line = " - ".join(split_replaced_line)
+    directory.insert(directory.index(replaced_line), replacing_line)
+    directory.pop(directory.index(replaced_line))
+    phone_directory2 = open("phone_directory.txt", "w")
+    for line in directory:
+        phone_directory2.writelines(line)
+    phone_directory1.close()
+    phone_directory2.close()
+
+
 menu_user_input = None
 
 while menu_user_input != 9:
@@ -42,6 +63,8 @@ while menu_user_input != 9:
         read_directory()
     elif menu_user_input == 2:
         append_new_in_directory()
+    elif menu_user_input == 3:
+        change_directory()
     
 
 
