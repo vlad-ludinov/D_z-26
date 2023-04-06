@@ -35,35 +35,28 @@ def find_element_directory(data, element):
 
 def change_directory():
     phone_directory1 = open("phone_directory.txt", "r")
-    print("Введите то что хотите изменить: 1 - Имя; 2 - Номер телефона; 3 - Коментарий")
-    replaced_element_number = input()
-    if replaced_element_number == 1:
-        print("Введите имя которое вы хотите заменить:")
-    elif replaced_element_number == 2:
-        print("Введите номер который вы хотите заменить:")
-    elif replaced_element_number == 3:
-        print("Введите коментарий который вы хотите заменить:")
+    print("Введите элемент который хотите изменить:")
     replaced_element = input()
-    if replaced_element_number == 1:
-        print("Введите имя на которое вы хотите заменить выбраное:")
-    elif replaced_element_number == 2:
-        print("Введите номер на который вы хотите заменить выбраный:")
-    elif replaced_element_number == 3:
-        print("Введите коментарий на который вы хотите заменить выбраный:")
-    replacing_element = input()
     directory = phone_directory1.readlines()
     replaced_line = find_element_directory(directory, replaced_element)
-    split_replaced_line = replaced_line.split(" - ")
-    split_replaced_line.insert(split_replaced_line.index(replaced_element), replacing_element)
-    split_replaced_line.pop(split_replaced_line.index(replaced_element))
-    replacing_line = " - ".join(split_replaced_line)
-    directory.insert(directory.index(replaced_line), replacing_line)
-    directory.pop(directory.index(replaced_line))
-    phone_directory2 = open("phone_directory.txt", "w")
-    for line in directory:
-        phone_directory2.writelines(line)
+    if replaced_line == None:
+        print("Такого элемента нет")
+    else:
+        print("Введите элемент на который вы хотите заменить:")
+        replacing_element = input()
+        split_replaced_line = replaced_line.split(" - ")
+        split_replaced_line.insert(split_replaced_line.index(replaced_element), replacing_element)
+        split_replaced_line.pop(split_replaced_line.index(replaced_element))
+        replacing_line = " - ".join(split_replaced_line)
+        directory.insert(directory.index(replaced_line), replacing_line)
+        directory.pop(directory.index(replaced_line))
+        phone_directory2 = open("phone_directory.txt", "w")
+        for line in directory:
+            phone_directory2.writelines(line)
+        phone_directory2.close()
     phone_directory1.close()
-    phone_directory2.close()
+    print()
+        
 
 
 menu_user_input = None
