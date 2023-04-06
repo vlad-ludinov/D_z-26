@@ -21,6 +21,7 @@ def read_directory():
             print()
     print()
     phone_directory.close()
+    menu()
 
 def append_new_in_directory():
     phone_directory = open("phone_directory.txt", "a")
@@ -29,6 +30,10 @@ def append_new_in_directory():
     comment = input("Введите коментарий: ")
     phone_directory.writelines(f"\n{name} - {phone_number} - {comment}")
     phone_directory.close()
+    print()
+    print("Готово")
+    print()
+    menu()
 
 def find_all_element_directory(data, element):
     lines = []
@@ -66,6 +71,7 @@ def change_directory():
         print("Готово")
     phone_directory1.close()
     print()
+    menu()
         
 def delete_element_directory():
     phone_directory1 = open("phone_directory.txt", "r")
@@ -73,7 +79,8 @@ def delete_element_directory():
     remote_element = input()
     directory = phone_directory1.readlines()
     remote_lines = find_all_element_directory(directory, remote_element)
-    if remote_element == []:
+    if remote_lines == []:
+        print()
         print("Такого элемента в справочнике нет")
     else:
         for line in remote_lines:
@@ -82,12 +89,13 @@ def delete_element_directory():
         for line in directory:
             phone_directory2.writelines(line)
         phone_directory2.close()
+        print()
+        print("Готово")
     phone_directory1.close()
     print()
+    menu()
 
-menu_user_input = None
-
-while menu_user_input != 9:
+def menu():
     print("Выберите команду: 1 - Просмотр справочника; 2 - Добавление новых данных в справочник; 3 - Изменение справочника; 4 - Удалиение данных из справочника; 9 - Прекращение работы")
     menu_user_input = int(input())
     if menu_user_input == 1:
@@ -98,7 +106,12 @@ while menu_user_input != 9:
         change_directory()
     elif menu_user_input == 4:
         delete_element_directory()
+    elif menu_user_input != 9:
+        print()
+        print("Такой команды нету")
+        print()
+        menu()
     
-
+menu()
 
 
